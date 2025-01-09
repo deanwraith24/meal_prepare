@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'recipes',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
