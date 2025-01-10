@@ -15,6 +15,9 @@ class Command(BaseCommand):
                 "steps": "1. Cook quinoa. 2. Prepare chickpeas. 3. Assemble bowl.",
                 "nutritional_info": {"calories": 450, "protein": 20, "carbs": 50, "fat": 15},
                 "preparation_time": 30,
+                "category": "lunch",
+                "diet": "vegan",
+                "cuisine": "other",
             },
             {
                 "title": "Grilled Chicken Salad",
@@ -24,6 +27,9 @@ class Command(BaseCommand):
                 "steps": "1. Grill chicken. 2. Chop vegetables. 3. Toss salad.",
                 "nutritional_info": {"calories": 350, "protein": 40, "carbs": 10, "fat": 10},
                 "preparation_time": 25,
+                "category": "dinner",
+                "diet": "none",
+                "cuisine": "american",
             },
             # Add more recipes as needed
         ]
@@ -32,3 +38,5 @@ class Command(BaseCommand):
             Recipe.objects.create(**recipe_data)
         
         self.stdout.write(self.style.SUCCESS("Recipes loaded successfully!"))
+
+
