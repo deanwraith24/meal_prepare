@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Meal Prepare</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'recipes:list' %}">Recipes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Shopping List</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content mt-5 pt-5">
+    <div class="row">
+      <!-- Calorie Counter -->
+      <div class="col-md-4">
+        <h4>Calories</h4>
+        <div class="ring-chart">
+          <!-- Insert a library like Chart.js or D3.js for visualization -->
+          <p>{{ calories_eaten }} / {{ calorie_goal }} kcal</p>
+        </div>
+      </div>
+      
+      <!-- Macronutrient Progress -->
+      <div class="col-md-8">
+        <h4>Macronutrients</h4>
+        <div class="progress mb-2">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: {{ protein / calorie_goal|floatformat:0 }}%;" aria-valuenow="{{ protein }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal }}">{{ protein }}g Protein</div>
+        </div>
+        <div class="progress mb-2">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{ fat / calorie_goal|floatformat:0 }}%;" aria-valuenow="{{ fat }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal }}">{{ fat }}g Fat</div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar" style="width: {{ carbs / calorie_goal|floatformat:0 }}%;" aria-valuenow="{{ carbs }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal }}">{{ carbs }}g Carbs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipe List -->
+    <div class="mt-5">
+      <h4>Today's Meals</h4>
+      <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-md-3">
+          <div class="card">
+            <img class="card-img-top" src="{{ recipe.image }}" alt="Recipe image">
+            <div class="card-body">
+              <h5 class="card-title">{{ recipe.meal }}</h5>
+              <p class="card-text">{{ recipe.calories }} kcal - {{ recipe.prep_time }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Water Tracker -->
+    <div class="mt-5">
+      <h4>Water Tracker</h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {{ water_intake / water_goal|floatformat:0 }}%;" aria-valuenow="{{ water_intake }}" aria-valuemin="0" aria-valuemax="{{ water_goal }}">{{ water_intake }} ml</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 text-center">
+    <a href="https://facebook.com" target="_blank">Facebook</a> |
+    <a href="https://twitter.com" target="_blank">Twitter</a> |
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+  </footer>
+</div>
+{% endblock %}

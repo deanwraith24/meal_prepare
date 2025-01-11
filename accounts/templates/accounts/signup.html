@@ -1,32 +1,19 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
-{% block content %}
-    <h1>{% trans "Sign Up" %}</h1>
-    <p>
-        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
-    </p>
-    {% if not SOCIALACCOUNT_ONLY %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div>
-                <h4>Select an Avatar:</h4>
-                {% for avatar in avatars %}
-                    <label>
-                        <input type="radio" name="avatar" value="{{ avatar.id }}">
-                        <img src="{{ avatar.url }}" alt="{{ avatar.name }}" width="50">
-                    </label>
-                {% endfor %}
-            </div>
-            {{ redirect_field }}
-            <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
-        </form>
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
-{% endblock content %}
+{% extends "base.html" %}
 
+{% block content %}
+<div class="form-container">
+  <h1>Sign Up</h1>
+  <p>Create an account to start your journey!</p>
+  
+  <form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+  </form>
+  
+  <p>
+    Already have an account? 
+    <a href="{% url 'account_login' %}">Sign In</a>
+  </p>
+</div>
+{% endblock %}

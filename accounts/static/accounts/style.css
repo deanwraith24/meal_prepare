@@ -1,0 +1,133 @@
+/* General Reset */
+body, h1, p, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Form Container */
+  .form-container {
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .form-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #2575fc;
+  }
+  
+  .form-container p {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .form-container .form-control {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .form-container button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #2575fc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .form-container button:hover {
+    background: #6a11cb;
+  }
+  
+  /* Links */
+  .form-container a {
+    color: #2575fc;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .form-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Landing Page Styling */
+.landing-container {
+  text-align: center;
+  color: #fff;
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.landing-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.landing-container p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+}
+
+.landing-buttons a {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.landing-buttons .btn-primary {
+  background: #2575fc;
+  color: #fff;
+}
+
+.landing-buttons .btn-primary:hover {
+  background: #6a11cb;
+  transform: scale(1.05);
+}
+
+.landing-buttons .btn-secondary {
+  background: #fff;
+  color: #2575fc;
+  border: 1px solid #2575fc;
+}
+
+.landing-buttons .btn-secondary:hover {
+  background: #2575fc;
+  color: #fff;
+  transform: scale(1.05);
+}

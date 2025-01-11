@@ -19,8 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),  # Direct root URL to the accounts app
-    path('recipes/', include('recipes.urls')),  # Recipes app URLs
-    path('accounts/', include('django.contrib.auth.urls')),  # Django's built-in auth URLs
+    path('', include('accounts.urls')),  # Accounts app
+    path('dashboard/', include('dashboard.urls')),  # Dashboard app
+    path('recipes/', include('recipes.urls')),  # Recipes app
+    path('accounts/', include('django.contrib.auth.urls')),  # Django's built-in auth views
 ]
-
