@@ -14,6 +14,7 @@
         <li class="nav-item"><a class="nav-link" href="{% url 'recipes:list' %}">Recipes</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Shopping List</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
       </ul>
     </div>
   </nav>
@@ -24,9 +25,9 @@
       <!-- Calorie Counter -->
       <div class="col-md-4">
         <h4>Calories</h4>
-        <div class="ring-chart">
-          <!-- Insert a library like Chart.js or D3.js for visualization -->
-          <p>{{ calories_eaten }} / {{ calorie_goal }} kcal</p>
+        <div class="ring-chart text-center">
+          <!-- Visualization Placeholder -->
+          <p>{{ calories_eaten|default:0 }} / {{ calorie_goal|default:2000 }} kcal</p>
         </div>
       </div>
       
@@ -34,13 +35,13 @@
       <div class="col-md-8">
         <h4>Macronutrients</h4>
         <div class="progress mb-2">
-          <div class="progress-bar bg-primary" role="progressbar" style="width: {{ protein / calorie_goal|floatformat:0 }}%;" aria-valuenow="{{ protein }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal }}">{{ protein }}g Protein</div>
+          <div class="progress-bar bg-primary" role="progressbar" style="width: {{ protein|default:0|floatformat:0 }}/{{ calorie_goal|default:1 }}%;" aria-valuenow="{{ protein|default:0 }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal|default:2000 }}">{{ protein|default:0 }}g Protein</div>
         </div>
         <div class="progress mb-2">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: {{ fat / calorie_goal|floatformat:0 }}%;" aria-valuenow="{{ fat }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal }}">{{ fat }}g Fat</div>
+          <div class="progress-bar bg-warning" role="progressbar" style="width: {{ fat|default:0|floatformat:0 }}/{{ calorie_goal|default:1 }}%;" aria-valuenow="{{ fat|default:0 }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal|default:2000 }}">{{ fat|default:0 }}g Fat</div>
         </div>
         <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style="width: {{ carbs / calorie_goal|floatformat:0 }}%;" aria-valuenow="{{ carbs }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal }}">{{ carbs }}g Carbs</div>
+          <div class="progress-bar bg-success" role="progressbar" style="width: {{ carbs|default:0|floatformat:0 }}/{{ calorie_goal|default:1 }}%;" aria-valuenow="{{ carbs|default:0 }}" aria-valuemin="0" aria-valuemax="{{ calorie_goal|default:2000 }}">{{ carbs|default:0 }}g Carbs</div>
         </div>
       </div>
     </div>
@@ -49,17 +50,21 @@
     <div class="mt-5">
       <h4>Today's Meals</h4>
       <div class="row">
-        {% for recipe in recipes %}
-        <div class="col-md-3">
-          <div class="card">
-            <img class="card-img-top" src="{{ recipe.image }}" alt="Recipe image">
-            <div class="card-body">
-              <h5 class="card-title">{{ recipe.meal }}</h5>
-              <p class="card-text">{{ recipe.calories }} kcal - {{ recipe.prep_time }}</p>
+        {% if recipes %}
+          {% for recipe in recipes %}
+          <div class="col-md-3 mb-4">
+            <div class="card">
+              <img class="card-img-top" src="{{ recipe.image|default:'/static/default_recipe.jpg' }}" alt="Image for {{ recipe.meal }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ recipe.meal }}</h5>
+                <p class="card-text">{{ recipe.calories|default:0 }} kcal - {{ recipe.prep_time|default:'N/A' }}</p>
+              </div>
             </div>
           </div>
-        </div>
-        {% endfor %}
+          {% endfor %}
+        {% else %}
+          <p>No recipes planned for today. Add some from the <a href="{% url 'recipes:list' %}">Recipes</a> page!</p>
+        {% endif %}
       </div>
     </div>
 
@@ -67,16 +72,21 @@
     <div class="mt-5">
       <h4>Water Tracker</h4>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: {{ water_intake / water_goal|floatformat:0 }}%;" aria-valuenow="{{ water_intake }}" aria-valuemin="0" aria-valuemax="{{ water_goal }}">{{ water_intake }} ml</div>
+        <div class="progress-bar" role="progressbar" style="width: {{ water_intake|default:0 }}/{{ water_goal|default:2000 }}%;" aria-valuenow="{{ water_intake|default:0 }}" aria-valuemin="0" aria-valuemax="{{ water_goal|default:2000 }}">
+          {{ water_intake|default:0 }} ml
+        </div>
       </div>
+      <small>{{ water_intake|default:0 }} / {{ water_goal|default:2000 }} ml</small>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="mt-5 text-center">
-    <a href="https://facebook.com" target="_blank">Facebook</a> |
-    <a href="https://twitter.com" target="_blank">Twitter</a> |
+    <p>Follow us on:</p>
+    <a href="https://facebook.com" target="_blank" class="mr-2">Facebook</a>
+    <a href="https://twitter.com" target="_blank" class="mr-2">Twitter</a>
     <a href="https://instagram.com" target="_blank">Instagram</a>
   </footer>
 </div>
 {% endblock %}
+

@@ -19,8 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),  # Accounts app
-    path('dashboard/', include('dashboard.urls')),  # Dashboard app
-    path('recipes/', include('recipes.urls')),  # Recipes app
-    path('accounts/', include('django.contrib.auth.urls')),  # Django's built-in auth views
+    path('accounts/', include('django.contrib.auth.urls')),  # Django auth URLs
+    path('accounts/', include('allauth.urls')),  # allauth URLs
+    path('', include('accounts.urls')),  # Your accounts app URLs
+    path('dashboard/', include('dashboard.urls')),
+    path('recipes/', include('recipes.urls')),
 ]
