@@ -19,9 +19,16 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),  # Django auth URLs
-    path('accounts/', include('allauth.urls')),  # allauth URLs
-    path('', include('accounts.urls')),  # Your accounts app URLs
+    
+    # Django Allauth URLs for authentication
+    path('accounts/', include('allauth.urls')),
+
+    # Landing page route
+    path('', include('accounts.urls')),  # URLs for your accounts app (e.g., landing page)
+
+    # Dashboard app URLs
     path('dashboard/', include('dashboard.urls')),
+
+    # Recipes app URLs
     path('recipes/', include('recipes.urls')),
 ]

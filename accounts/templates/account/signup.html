@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+  <h1>Sign Up</h1>
+  <p>Create an account to start your journey!</p>
+  
+  <form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <div class="avatar-selection">
+      <h3>Select an Avatar</h3>
+      <div class="avatars">
+        {% for avatar in avatars %}
+        <label>
+          <input type="radio" name="avatar" value="{{ avatar.id }}" required>
+          <img src="{{ avatar.image.url }}" alt="Avatar {{ forloop.counter }}">
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </form>
+  
+  <p>
+    Already have an account? 
+    <a href="{% url 'account_login' %}">Sign In</a>
+  </p>
+</div>
+{% endblock %}
+

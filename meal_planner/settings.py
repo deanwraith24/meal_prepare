@@ -29,10 +29,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-deanwraith2-mealprepare-65km2g4ogkd.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-deanwraith2-mealprepare-vaq47jd6qsl.ws.codeinstitute-ide.net']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-deanwraith2-mealprepare-65km2g4ogkd.ws.codeinstitute-ide.net'
+    'https://8000-deanwraith2-mealprepare-vaq47jd6qsl.ws.codeinstitute-ide.net'
 ]
 
 # Application definition
