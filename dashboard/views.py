@@ -1,4 +1,3 @@
-# dashboard/views.py
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
@@ -10,6 +9,7 @@ def dashboard_view(request):
         "protein": 60,
         "fat": 30,
         "carbs": 80,
+        "recipes_api_url": "/recipes/",  # Link to the API endpoint
         "recipes": [
             {"meal": "Breakfast", "image": "path/to/image1.jpg", "calories": 300, "prep_time": "10 min"},
             {"meal": "Lunch", "image": "path/to/image2.jpg", "calories": 400, "prep_time": "15 min"},
@@ -20,5 +20,3 @@ def dashboard_view(request):
         "water_goal": 2000,
     }
     return render(request, 'dashboard/dashboard.html', user_data)
-
-
